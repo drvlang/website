@@ -1,16 +1,83 @@
 {
   "nodes": {
+    "drvc": {
+      "inputs": {
+        "drvcpp": "drvcpp",
+        "drvkit": "drvkit",
+        "nixpkgs": [
+          "mmdoc",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795430669,
+        "narHash": "sha256-kkQQo5U+PCwj487fdQhEmxXFI+AosDIil6WCJ9feqlM=",
+        "owner": "drvlang",
+        "repo": "drvc",
+        "rev": "d9b8e81604e7cec765e7186c4bef5febae4b63fe",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drvlang",
+        "repo": "drvc",
+        "type": "github"
+      }
+    },
+    "drvcpp": {
+      "inputs": {
+        "drvkit": [
+          "mmdoc",
+          "drvc",
+          "drvkit"
+        ],
+        "nixpkgs": [
+          "mmdoc",
+          "drvc",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795430345,
+        "narHash": "sha256-gYIg09x6nxL4DmCfUwe9cWk3YJn4zRAkGep35PbzKUk=",
+        "owner": "drvlang",
+        "repo": "drvcpp",
+        "rev": "5e5ebd4d582c31945f50c34efff39a8949f9cdf9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drvlang",
+        "repo": "drvcpp",
+        "type": "github"
+      }
+    },
+    "drvkit": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1795430289,
+        "narHash": "sha256-EiVv12FvqQ+QslTqJl3apifaOSZMou+9krn7RSQFsHQ=",
+        "owner": "drvlang",
+        "repo": "drvkit",
+        "rev": "457d3892e9ac699dbf4e5a507c6cffa7ecc8928b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "drvlang",
+        "repo": "drvkit",
+        "type": "github"
+      }
+    },
     "mmdoc": {
       "inputs": {
+        "drvc": "drvc",
         "nixpkgs": "nixpkgs",
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1788632859,
-        "narHash": "sha256-aq/+/geFENuDHk5yu6eFw5/TKpAANMO0kVcdq8uSW/c=",
+        "lastModified": 1795430795,
+        "narHash": "sha256-Bbq5P127y64stsh8E0EHlkyce22M1giT1rcMvv2hAIw=",
         "owner": "ryantm",
         "repo": "mmdoc",
-        "rev": "f9f360bb2565a6bf1c01e63a3d68109b6dd00257",
+        "rev": "fe2b980ed7479545937acfe3a87560e750876328",
         "type": "github"
       },
       "original": {
