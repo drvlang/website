@@ -7,6 +7,7 @@
     in {
       packages = eachSystem (system: {
         default = nixpkgs.legacyPackages.${system}.runCommand "drvlang-website" {
+          __contentAddressed = true;
           nativeBuildInputs = [ mmdoc.packages.${system}.default ];
         } ''
           mmdoc drvlang ${./doc} generated

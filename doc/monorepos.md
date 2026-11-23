@@ -6,11 +6,21 @@ drvlang’s builders use dynamic derivations to plan work from native manifests,
 
 ## Share results between runners
 
+Build outputs are content-addressed by default. Nix may run a changed library recipe once to discover its output. When its installed files and store references are identical, the library keeps its store path and downstream jobs can reuse their results. A program that also reads the edited source directly has a separate reason to rebuild, so keep each target's file set precise.
+
 1. Point developer machines and CI runners at the same trusted Nix binary cache.
 2. Build a named target. Nix uses local store paths first, substitutes matching paths from the cache, and schedules the missing work.
-3. Publish reusable build outputs from successful jobs to that cache. A later job can substitute them even when it runs on another machine.
+3. Publish the named target and its build traces. The traces tell another runner which output a recipe produced. The publishing and consuming versions of Nix must use a compatible build-trace format.
 
-The cache must actually contain the intermediate outputs you want to share. A final executable can have a smaller runtime closure than the set of inputs used to build it. Configure the cache uploader to retain the build outputs that matter to your workload.
+For Nix 2.35 and a new cache, the following command copies the intermediate CA outputs and their references along with the named target. This matters when a compiler tool or an intermediate library falls outside the executable’s runtime closure.
+
+```bash
+nix store build-trace info --recursive --json .#api |
+  jq -r '.[] | select(.value) | "/nix/store/" + .value.outPath' |
+  nix copy --to "$cache" --stdin .#api
+```
+
+A runner with builds disabled also needs substitutes for ordinary build inputs, including project-specific compiler dependencies. Keep the usual Nixpkgs cache enabled and publish any such inputs built only in your CI. The [Nix 2.35 release notes](https://nix.dev/manual/nix/2.35/release-notes/rl-2.35.html) describe the build-trace format change.
 
 ## Name the programs once
 
