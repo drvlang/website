@@ -20,13 +20,18 @@ For a Go workspace with commands under `cmd/` and shared code under `pkg/`, a co
 {
   inputs.drvgo.url = "github:drvlang/drvgo";
   outputs = { drvgo, ... }: drvgo.lib.mkMonorepoFlake {
-    src = ./.;
     commands = {
       api = "cmd/api";
       worker = "cmd/worker";
     };
+    srcForTarget = { target, ... }: drvgo.lib.projectSource {
+      root = ./.;
+      files = [ ./go.mod ./go.sum (./. + "/${target}") ./pkg/parser ];
+    };
   };
 }
 ```
+
+Here both programs import `pkg/parser`, and the module has a `go.sum`. Each target receives its own command directory plus those shared inputs. Editing `cmd/worker` leaves the server’s package and test derivations unchanged. If a command embeds templates or reads fixtures, include those paths in its file set too.
 
 Run `nix build .#api` to select the server. The [drvgo guide](https://github.com/drvlang/drvgo) lists the Nix features and toolchain settings for this build.
