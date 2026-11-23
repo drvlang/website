@@ -1,0 +1,32 @@
+:root {
+  --light_accent: #006279;
+  --light_accent-soft: #dbf4f6;
+  --light_background: #fcfefe;
+  --light_surface-muted: #eef5f5;
+  --light_foreground: #102f37;
+  --dark_accent: #6edfea;
+  --dark_accent-soft: #163f49;
+  --content-width: 78ch;
+}
+nav.sidebar h1 {
+  font-size: 1.75rem;
+  text-transform: none;
+  letter-spacing: -.06em;
+}
+main h1 {
+  font-size: clamp(2.15rem, 4.7vw, 3.9rem);
+  line-height: 1.05;
+  letter-spacing: -.04em;
+  text-wrap: balance;
+}
+main img[src$="snowball.png"] {
+  width: min(29vw, 10.5rem);
+  float: right;
+  margin: 0 0 1.3rem 1.7rem;
+  border-radius: 22%;
+}
+main h2 { clear: both; }
+main h1 + p + p:has(+ h2) { font-size: 1.2rem; line-height: 1.6; }
+@media (max-width: 40rem) {
+  main img[src$="snowball.png"] { width: 5.5rem; margin-left: .9rem; }
+}
