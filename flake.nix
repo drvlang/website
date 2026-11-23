@@ -20,6 +20,10 @@
           done
           test -s "$out/index.html"
           test -s "$out/languages/index.html"
+          for source in ${./doc}/examples/*.md; do
+            example=$(basename "$source" .md)
+            test -s "$out/examples/$example/index.html"
+          done
         '';
       });
     };

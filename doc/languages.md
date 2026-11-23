@@ -1,20 +1,25 @@
 # Language builders {#languages}
 
-Start with the builder that matches your repository’s native dependency files. Each repository documents its supported formats, platform requirements, and benchmark workloads.
+Each drvlang builder provides `build`, `test`, and `run`, plus flake packages, checks, and apps. Use the native dependency files shown below. Nix derives fetches from their checksums or immutable revisions, so you can update dependencies without also editing a Nix hash.
 
-| Language and builder | Native project input |
-| --- | --- |
-| [Go (drvgo)](https://github.com/drvlang/drvgo) | Go modules, including `go.mod` and `go.sum` |
-| [JavaScript and TypeScript (drvjs)](https://github.com/drvlang/drvjs) | pnpm workspaces and `pnpm-lock.yaml` |
-| [Python (drvpy)](https://github.com/drvlang/drvpy) | uv projects and `uv.lock` |
-| [Rust (drvrust)](https://github.com/drvlang/drvrust) | Cargo workspaces and `Cargo.lock` |
-| [Java (drvjava)](https://github.com/drvlang/drvjava) | Maven artifacts locked by `rules_jvm_external` |
-| [C# and .NET (drvnet)](https://github.com/drvlang/drvnet) | SDK projects with NuGet `packages.lock.json` |
-| [C (drvc)](https://github.com/drvlang/drvc) | Meson C projects, including projects with hashed wrap archives |
-| [C and C++ (drvcpp)](https://github.com/drvlang/drvcpp) | Meson projects with hashed wrap archives |
+| Builder | Native dependency input | Worked example |
+| --- | --- | --- |
+| [drvgo](https://github.com/drvlang/drvgo) | Go modules, `go.mod` and `go.sum` | [Replit UPM](#go) |
+| [drvjs](https://github.com/drvlang/drvjs) | pnpm workspaces, `pnpm-lock.yaml` versions 9, 12, or experimental 13 | [JavaScript](#javascript) · [TypeScript](#typescript) |
+| [drvpy](https://github.com/drvlang/drvpy) | uv, version 1 `uv.lock` | [Flask](#python) |
+| [drvrust](https://github.com/drvlang/drvrust) | Cargo, version 4 `Cargo.lock` | [hexyl](#rust) |
+| [drvjava](https://github.com/drvlang/drvjava) | Maven artifacts in a version 3 `rules_jvm_external` lock | [IndexJar](#java) |
+| [drvnet](https://github.com/drvlang/drvnet) | NuGet, version 1 or 2 `packages.lock.json` | [Dev Proxy](#dotnet) |
+| [drvc](https://github.com/drvlang/drvc) | Meson, including hashed source and patch archives in `.wrap` files | [mmdoc](#c) |
+| [drvcpp](https://github.com/drvlang/drvcpp) | Meson, including hashed source and patch archives in `.wrap` files | [OpenH264](#cpp) |
 
-## What the builders share
+## Run the examples
 
-The project is working toward the same build, test, and run experience in every language. Native lockfiles supply the integrity information. Updating a dependency should take one lockfile change, with no Nix dependency hash to maintain.
+Use a Nix version with dynamic derivation support. Enable these settings in `nix.conf` on the client and builder. Restart the Nix daemon after changing its configuration.
 
-The builders use pinned open-source projects to exercise real code. Examples include Vue for JavaScript, Flask for Python, hexyl for Rust, and OpenH264 for C and C++. This site is rendered by [mmdoc](https://github.com/ryantm/mmdoc), a C project that uses drvc to build its executable and run its tests. Follow the builder links for commands and measurements.
+```ini
+extra-experimental-features = nix-command flakes ca-derivations dynamic-derivations recursive-nix
+extra-system-features = recursive-nix ca-derivations
+```
+
+The examples target Linux on x86-64 or ARM64. drvgo also supports Apple Silicon macOS, and drvc supports both Intel and Apple Silicon macOS. Check each builder’s README for toolchains and project-specific options. For several programs in one repository, expose named outputs with `mkMonorepoFlake`. [Monorepo example](#monorepos)

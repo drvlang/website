@@ -1,13 +1,25 @@
-# Incremental builds with Nix {#overview}
+# Build and test across languages with Nix {#overview}
 
 ![The drvlang snowball rolling downhill](snowball.png)
 
-drvlang turns a language’s native build graph into work that Nix can cache. The goal is to change one program in a monorepo and let the next CI runner pick up everything its predecessors already built.
+drvlang brings Go, JavaScript, TypeScript, Python, Rust, Java, C#, C, and C++ projects into the Nix binary cache. Start with the dependency files your project already uses. Each language has a builder with the same three commands — `build`, `test`, and `run`.
 
-## One edit in a monorepo
+## Choose a language
 
-Imagine a Go repository with an API server, a background worker, and a shared parser. You fix a handler that only the server imports. The worker’s inputs are unchanged. A CI runner with an empty local store can fetch the worker from your Nix binary cache and spend its build time on the server.
+| Language | Try it on a real project |
+| --- | --- |
+| Go | [Build Replit’s package manager and its database generator](#go) |
+| JavaScript | [Parse a stylesheet with PostCSS](#javascript) |
+| TypeScript | [Run Vue’s computed-property tests](#typescript) |
+| Python | [Test Flask with its uv environment](#python) |
+| Rust | [Inspect bytes with the hexyl command-line tool](#rust) |
+| Java | [Find Java classes with Bazel’s JAR indexer](#java) |
+| C# / .NET | [Parse Markdown with Microsoft’s Dev Proxy](#dotnet) |
+| C | [Render a manual with mmdoc](#c) |
+| C++ | [Initialize an OpenH264 video encoder](#cpp) |
 
-Changing the shared parser is a different edit. Both programs depend on it, so both paths through the graph may need work. Which outputs can be reused follows from their inputs, even when the two CI runs happen on different machines.
+## Share work across CI runners
 
-[See how a CI build uses the cache](#monorepos) · [Find your language](#languages)
+When a dependency changes, commit the updated native lockfile. The builder reads it during the build and asks Nix to fetch the locked dependencies. A new runner can reuse outputs already published to your binary cache. What it reuses depends on the language, from individual Go package compilations to downloaded crates, JARs, or pnpm packages.
+
+In a monorepo, give each program a name and specify the sources, manifests, and shared code it reads. An edit to an unrelated program can then leave the selected target’s build and test outputs reusable. [Configure Nix for your builder](#languages) · [Set up a monorepo and CI cache](#monorepos)

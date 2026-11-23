@@ -1,6 +1,15 @@
 # drvlang
 
 - [](#overview)
-- [](#monorepos)
 - [](#languages)
+  - [](#go)
+  - [](#javascript)
+  - [](#typescript)
+  - [](#python)
+  - [](#rust)
+  - [](#java)
+  - [](#dotnet)
+  - [](#c)
+  - [](#cpp)
+- [](#monorepos)
 - [](#about)
