@@ -30,3 +30,7 @@ main h1 + p + p:has(+ h2) { font-size: 1.2rem; line-height: 1.6; }
 @media (max-width: 40rem) {
   main img[src$="snowball.png"] { width: 5.5rem; margin-left: .9rem; }
 }
+@media (max-width: 40rem) {
+  main table :is(td, th) { padding-inline: .55rem; }
+  main td code { overflow-wrap: anywhere; }
+}

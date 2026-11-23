@@ -2,15 +2,15 @@
 
 Start with the builder that matches your repository’s native dependency files. Each repository documents its supported formats, platform requirements, and benchmark workloads.
 
-| Language | Native project input | Builder |
-| --- | --- | --- |
-| Go | Go modules, including `go.mod` and `go.sum` | [drvgo](https://github.com/drvlang/drvgo) |
-| JavaScript and TypeScript | pnpm workspaces and `pnpm-lock.yaml` | [drvjs](https://github.com/drvlang/drvjs) |
-| Python | uv projects and `uv.lock` | [drvpy](https://github.com/drvlang/drvpy) |
-| Rust | Cargo workspaces and `Cargo.lock` | [drvrust](https://github.com/drvlang/drvrust) |
-| Java | Maven artifacts locked by `rules_jvm_external` | [drvjava](https://github.com/drvlang/drvjava) |
-| C# and .NET | SDK projects with NuGet `packages.lock.json` | [drvnet](https://github.com/drvlang/drvnet) |
-| C and C++ | Meson projects with hashed wrap archives | [drvcpp](https://github.com/drvlang/drvcpp) |
+| Language and builder | Native project input |
+| --- | --- |
+| [Go (drvgo)](https://github.com/drvlang/drvgo) | Go modules, including `go.mod` and `go.sum` |
+| [JavaScript and TypeScript (drvjs)](https://github.com/drvlang/drvjs) | pnpm workspaces and `pnpm-lock.yaml` |
+| [Python (drvpy)](https://github.com/drvlang/drvpy) | uv projects and `uv.lock` |
+| [Rust (drvrust)](https://github.com/drvlang/drvrust) | Cargo workspaces and `Cargo.lock` |
+| [Java (drvjava)](https://github.com/drvlang/drvjava) | Maven artifacts locked by `rules_jvm_external` |
+| [C# and .NET (drvnet)](https://github.com/drvlang/drvnet) | SDK projects with NuGet `packages.lock.json` |
+| [C and C++ (drvcpp)](https://github.com/drvlang/drvcpp) | Meson projects with hashed wrap archives |
 
 ## What the builders share
 
