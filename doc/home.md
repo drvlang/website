@@ -2,7 +2,7 @@
 
 ![The drvlang snowball rolling downhill](snowball.png)
 
-drvlang brings Go, JavaScript, TypeScript, Python, Rust, Java, C#, C, and C++ projects into the Nix binary cache. Start with the dependency files your project already uses. Each language has a builder with the same three commands — `build`, `test`, and `run`.
+drvlang brings Go, JavaScript, TypeScript, Python, Ruby, Rust, Java, C#, C, and C++ projects into the Nix binary cache. Start with the dependency files your project already uses. Each language has a builder with the same three commands — `build`, `test`, and `run`.
 
 ## Choose a language
 
@@ -12,6 +12,7 @@ drvlang brings Go, JavaScript, TypeScript, Python, Rust, Java, C#, C, and C++ pr
 | JavaScript | [Parse a stylesheet with PostCSS](#javascript) |
 | TypeScript | [Run Vue’s computed-property tests](#typescript) |
 | Python | [Test Flask with its uv environment](#python) |
+| Ruby | [Build a gem folder and parse a GraphQL query](#ruby) |
 | Rust | [Inspect bytes with the hexyl command-line tool](#rust) |
 | Java | [Find Java classes with Bazel’s JAR indexer](#java) |
 | C# / .NET | [Parse Markdown with Microsoft’s Dev Proxy](#dotnet) |

@@ -6,6 +6,7 @@
   - [](#javascript)
   - [](#typescript)
   - [](#python)
+  - [](#ruby)
   - [](#rust)
   - [](#java)
   - [](#dotnet)
