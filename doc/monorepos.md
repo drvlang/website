@@ -9,18 +9,21 @@ drvlang’s builders use dynamic derivations to plan work from native manifests,
 Build outputs are content-addressed by default. Nix may run a changed library recipe once to discover its output. When its installed files and store references are identical, the library keeps its store path and downstream jobs can reuse their results. A program that also reads the edited source directly has a separate reason to rebuild, so keep each target's file set precise.
 
 1. Point developer machines and CI runners at the same trusted Nix binary cache.
-2. Build a named target. Nix uses local store paths first, substitutes matching paths from the cache, and schedules the missing work.
-3. Publish the named target and its build traces. The traces tell another runner which output a recipe produced. The publishing and consuming versions of Nix must use a compatible build-trace format.
+2. Request the package and its check in the same Nix invocation. Nix can schedule independent work in parallel and share dependency builds. Add each affected program when a change touches shared code.
+3. Publish both named targets and their build traces. The traces tell another runner which output a recipe produced. The publishing and consuming versions of Nix must use a compatible build-trace format.
 
-For Nix 2.35 and a new cache, the following command copies the intermediate CA outputs and their references along with the named target. This matters when a compiler tool or an intermediate library falls outside the executable’s runtime closure.
+This Bash example builds and tests `api` on the current runner. It uses Nix 2.35 and a pinned copy of the shared publisher. Set `cache` to your writable binary cache.
 
 ```bash
-nix store build-trace info --recursive --json .#api |
-  jq -r '.[] | select(.value) | "/nix/store/" + .value.outPath' |
-  nix copy --to "$cache" --stdin .#api
+set -euo pipefail
+system=$(nix eval --impure --raw --expr builtins.currentSystem)
+targets=(.#api ".#checks.$system.api")
+nix build --no-link "${targets[@]}"
+kit=$(nix flake prefetch --json github:drvlang/drvkit/58a935137f5fe6c222746a55096cd2751dee3398 | jq -er .storePath)
+bash "$kit/publish-cache.sh" --upstream https://cache.nixos.org "$cache" "${targets[@]}"
 ```
 
-A runner with builds disabled also needs substitutes for ordinary build inputs, including project-specific compiler dependencies. Keep the usual Nixpkgs cache enabled and publish any such inputs built only in your CI. The [Nix 2.35 release notes](https://nix.dev/manual/nix/2.35/release-notes/rl-2.35.html) describe the build-trace format change.
+The publisher includes build-only inputs such as crate downloads and compiler hooks that a clean runner can need to resolve a recipe. Both runners should have access to the chosen upstream cache. Omit `--upstream` to publish all the identified build inputs and their closures to your own cache. These can include project source, so use a private cache for private code. [Publisher source](https://github.com/drvlang/drvkit/blob/58a935137f5fe6c222746a55096cd2751dee3398/publish-cache.sh) · [Nix 2.35 build-trace format](https://nix.dev/manual/nix/2.35/release-notes/rl-2.35.html)
 
 ## Name the programs once
 
