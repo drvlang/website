@@ -10,11 +10,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795483322,
-        "narHash": "sha256-TB8RE/2aqLxfFHKNTzfXjfDy7nNqEPdDAhDt7eWf4Es=",
+        "lastModified": 1795484951,
+        "narHash": "sha256-Q++24vlP/zkKdUYo+YSrERg0oiPsViBPDVbGCqtbkyc=",
         "owner": "drvlang",
         "repo": "drvc",
-        "rev": "89504f05db23d5d5bfcdebbc8345bca37a302c69",
+        "rev": "5547336b1a8731990ae124a23e40a025217bee5b",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1795483241,
-        "narHash": "sha256-lEi+zIHmcp/bmHp/UFtwwlnvNBTf9Ta7eQqJI2o/D4U=",
+        "lastModified": 1795484757,
+        "narHash": "sha256-tzziWwVsNbotccmDp1x7m8lv3LRMXqJKqVs5xLtpStk=",
         "owner": "drvlang",
         "repo": "drvcpp",
-        "rev": "482113c8b3df6cb71197d71dfcb1d0047ab0d019",
+        "rev": "9b0f92a195ba0cd88fb3bf6c92346e798295c6f9",
         "type": "github"
       },
       "original": {
@@ -53,11 +53,11 @@
     "drvkit": {
       "flake": false,
       "locked": {
-        "lastModified": 1795483027,
-        "narHash": "sha256-w8z7vvYuc9l0VJBhzKKVU3MvyC3QOhpNpASWBdFS1dg=",
+        "lastModified": 1795484617,
+        "narHash": "sha256-fBEE4mDNW/WJrR0C2o5hhld/Sz8//SDSky9RilQZhtY=",
         "owner": "drvlang",
         "repo": "drvkit",
-        "rev": "3fc05f4ff2602fab3ab107f356fa49fc9554388b",
+        "rev": "4b30cbc7192262909ce47a0712ba2d3b15788fa0",
         "type": "github"
       },
       "original": {
