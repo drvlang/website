@@ -23,4 +23,4 @@ drvlang brings Go, JavaScript, TypeScript, Python, Ruby, Rust, Java, C#, C, and 
 
 When a dependency changes, commit the updated native lockfile. The builder reads it during the build and asks Nix to fetch the locked dependencies. A new runner can reuse outputs already published to your binary cache. What it reuses depends on the language, from individual Go package compilations to downloaded crates, JARs, or pnpm packages.
 
-In a monorepo, give each program a name and specify the sources, manifests, and shared code it reads. An edit to an unrelated program can then leave the selected target’s build and test outputs reusable. [Configure Nix for your builder](#languages) · [Set up a monorepo and CI cache](#monorepos)
+In a monorepo, give each program a name and specify the sources, manifests, and shared code it reads. An edit to an unrelated program can then leave the selected target’s build and test outputs reusable. [Configure Nix for your builder](#languages) · [Set up a monorepo and CI cache](#monorepos) · [CI benchmarks](#benchmarks)
