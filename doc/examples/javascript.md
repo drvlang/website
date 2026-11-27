@@ -13,4 +13,4 @@ console.log(css.first.selector, css.first.first.value)
 JS
 ```
 
-The built project prints `h1 navy`. drvjs installs the application and its locked dependencies. Each downloaded tarball has its own Nix store path, so other JavaScript builds can reuse it. [PostCSS source](https://github.com/postcss/postcss/tree/91d6eb5c3d1ca8acb4e8e3926005acf2b066c211) · [drvjs workspace and flake options](https://github.com/drvlang/drvjs)
+The built project prints `h1 navy`. drvjs installs the application and its locked dependencies. Each downloaded tarball has its own Nix store path, so other JavaScript builds can reuse it. [PostCSS source](https://github.com/postcss/postcss/tree/91d6eb5c3d1ca8acb4e8e3926005acf2b066c211) · [drvjs workspace and flake options](https://github.com/drvlang/drvjs) · [JavaScript CI benchmarks](#benchmarks)
