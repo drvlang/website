@@ -8,4 +8,4 @@ nix-build drvgo/examples/upm/dynamic.nix -A package
 ./result/bin/upm list-languages
 ```
 
-The example fetches a pinned UPM revision, runs the database generator, and installs the command with the database path configured. The last line prints the languages UPM recognizes. To build an individual command in your own module, use `drvgo build ./cmd/app`. [UPM source](https://github.com/replit/upm/tree/35a76c282507fb942445c0ee98427b3d1ef772bc) · [Build recipe](https://github.com/drvlang/drvgo/tree/main/examples/upm) · [Go monorepo example](#monorepos) · [Go CI benchmarks](#benchmarks)
+The example fetches a pinned UPM revision, runs the database generator, and installs the command with the database path configured. The last line prints the languages UPM recognizes. To build an individual command in your own module, use `drvgo build ./cmd/app`. [UPM source](https://github.com/replit/upm/tree/35a76c282507fb942445c0ee98427b3d1ef772bc) · [Build recipe](https://github.com/drvlang/drvgo/tree/main/examples/upm) · [Go monorepo example](#monorepos) · [Go CI benchmarks](#benchmarks-go)

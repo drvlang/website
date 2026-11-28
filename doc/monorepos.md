@@ -47,4 +47,4 @@ For a Go workspace with commands under `cmd/` and shared code under `pkg/`, a co
 
 Here both programs import `pkg/parser`, and the module has a `go.sum`. Each target receives its own command directory plus those shared inputs. Editing `cmd/worker` leaves the server’s package and test derivations unchanged. If a command embeds templates or reads fixtures, include those paths in its file set too.
 
-Run `nix build .#api` to select the server. The [drvgo guide](https://github.com/drvlang/drvgo) lists the Nix features and toolchain settings for this build. See the [CI benchmarks](#benchmarks) for measured cold, cached, source-edit, and dependency-update timings against Nixpkgs’ `buildGoModule`.
+Run `nix build .#api` to select the server. The [drvgo guide](https://github.com/drvlang/drvgo) lists the Nix features and toolchain settings for this build. See the [Go CI benchmarks](#benchmarks-go) for measured cold, cached, source-edit, and dependency-update timings against Nixpkgs’ `buildGoModule`.

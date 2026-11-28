@@ -26,6 +26,10 @@
             example=$(basename "$source" .md)
             test -s "$out/examples/$example/index.html"
           done
+          for source in ${./doc}/benchmarks/*.md; do
+            bench=$(basename "$source" .md)
+            test -s "$out/benchmarks/$bench/index.html"
+          done
         '';
       });
     };
